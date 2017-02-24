@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PostgresPractice</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if flash[:errors] %>
+  <!-- <h1>This is an error message</h1> -->
+      <% flash[:errors].each do |e| %>
+      <h1><%= e%></h1>
+      <% end %>
+  <% end %>
+
+  <% if flash[:error] %>
+  <p><%= flash[:error] %></p>
+
+  <% end %>
+    <%= yield %>
+  </body>
+</html>

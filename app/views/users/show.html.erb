@@ -1,0 +1,40 @@
+<h1><%= @user.name%></h1>
+<!-- <p>Find me in app/views/users/show.html.erb</p> -->
+<form class="" action="/secrets" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <label for="New Secret">New Secret</label><br>
+      <textarea name="New Secret" rows="8" cols="80"></textarea><br>
+      <input type="hidden" name="user_id" value="<%=session[:user_id]%>"><br>
+      <input type="submit" name="submit" value="Create Secret">
+    </form>
+
+    <br><br>
+<form action='/sessions' method='post'>
+<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+<input type="hidden" name="_method" value="delete">
+	<input type="submit" value="Log Out">
+</form>
+<br><br>
+
+<a href="/users/<%=@user.id%>/edit">Edit Profile</a>
+
+<h2>Secrets</h2><hr>
+    <% @user.secrets.each do |secret| %>
+    <p><%= secret.content %></p>
+    <p><%= secret.likes.count %> likes</p><hr>
+    <form class="" action="/secrets/<%= secret.id %>/delete" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="submit" name="delete_secret" value="Delete">
+    </form>
+    <% end %>
+
+    <h2>Secrets-liked</h2><hr>
+    <% @user.secrets_liked.each do |secret| %>
+    <p><%= secret.content %></p>
+    <p><%= secret.likes.count %> likes</p><hr>
+    <form class="" action="/secrets/<%= secret.id %>/delete" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="submit" name="delete_secret" value="Delete">
+    </form>
+    <% end %>
+    <a href="/secrets">All the secrets</a>

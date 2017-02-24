@@ -1,0 +1,9 @@
+<a href="/users/new">Sign in</a> |<h1>User log in</h1>
+<form class="" action="/login" method="post">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <label for="email">Email</label>
+      <input type="text" name="Email" value=""><br>
+      <label for="password">Password</label>
+      <input type="password" name="Password" value=""><br>
+      <input type="submit" name="login" value="Log In">
+    </form>
